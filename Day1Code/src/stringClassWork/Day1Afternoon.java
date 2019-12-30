@@ -19,17 +19,14 @@ public class Day1Afternoon {
 
     public void mywork2(String str2) {
         char temp[] = new char[str2.length()];
-        int j = 0;
         for (int i = temp.length - 1; i >= 0; i--) {
-            temp[i] = str2.charAt(j);
-            j++;
+            temp[i] = str2.charAt(temp.length-i-1);
         }
         String nstr = new String(temp);
         System.out.println(nstr);
     }
 
     String note = "";
-
     public String mywork3(String str3, int i) {
         int temp = str3.indexOf("bcd", i);
         if (temp == -1) {
@@ -38,17 +35,20 @@ public class Day1Afternoon {
         note = note + temp + "  ";
         mywork3(str3, temp + 1);
         return note;
-
     }
 
     public boolean mywork4(String str4) {
-        return str4.lastIndexOf(".java") != -1;
+        return str4.endsWith(".java");
 
     }
 
     public void mywork5(String str5) {
         //500112 1996 11 22 6632
-        String ymd = str5.substring(6, 14);
+        String year = str5.substring(6, 10);
+        String month = str5.substring(10, 12);
+        month=month.replace("0","");
+        String day = str5.substring(12, 14);
+        System.out.println(year + "年，" + month + "月，" + day + "日");
 
     }
 
@@ -63,8 +63,8 @@ public class Day1Afternoon {
 //        work.mywork1();
 //        work.mywork2("abcdefgh");
 //        System.out.println(work.mywork3("abcdgbcdbcdabcabcd", 0));
-//        System.out.println(work.mywork4("D:\\myDonload\\SogouExplorer\\8.0.5.28300\\LocalPage\\test.java"));
-
+        System.out.println(work.mywork4("D:\\myDonload\\SogouExplorer\\8.0.5.28300\\LocalPage\\test.java"));
+//        work.mywork5("500112199601226632");
 //        work.mywork6("13131-dewfre-113213-131231");
 
     }
