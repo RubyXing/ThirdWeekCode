@@ -8,7 +8,6 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 //[2016][9][8][10][55][3]{1}[2016][9][8][10][58][57],
-//2016-9-8 10:55:3
 //[2016][9][8][10][55][3]{1}[2016][9][8][10][58][57]，
 //[2016][9][8][10][55][3]{1}[2016][9][8][10][58][57]
 //{1}表示主叫
@@ -64,8 +63,45 @@ public class Day1StringHwork {
         System.out.println("]");
     }
 
+    public static void spliteString(String str1) {
+        for (String s : str1.split(",")) {
+            callTime(s);
+        }
+    }
+
+
+    //定义一个对象数组，里面包含用户名，密码，地址属性
+//创建5个对象存入当前对象数组。
+//张三	123  四川省双流区
+//李四    admin  重庆江北路
+//小吴    root  四川南充市
+//小黑    123456 甘肃兰州
+//小白    woniuxy  四川省梁山市
+//判断有几个重庆的并且输出其数量。
+    public static void getAddress(Persone person[]) {
+        for (Persone p : person) {
+            if (p.getUaddress().indexOf("重庆") != -1) {
+                System.out.println(p.toString());
+            }
+        }
+    }
 
     public static void main(String[] args) {
-        callTime("[2016][9][8][10][55][3]{1}[2016][9][8][10][58][57]");
+
+//        spliteString("[2016][9][8][10][55][3]{1}[2016][9][8][10][58][57]," +
+//                "[2016][8][7][8][55][20]{0}[2016][9][8][10][58][57]," +
+//                "[2016][9][6][8][55][20]{1}[2016][9][8][10][58][57]," +
+//                "[2015][9][7][8][55][20]{0}[2016][9][8][10][58][57]," +
+//                "[2016][9][7][8][55][20]{1}[2016][9][8][10][58][57]," +
+//                "[2016][9][7][8][55][20]{0}[2016][9][8][10][58][57]," +
+//                "[2016][09][08][10][55][03]{1}[2016][09][08][11][41][57]");
+
+        Persone per1 = new Persone("张三", "123", "四川省双流区");
+        Persone per2 = new Persone("小吴", "admin", "四川南充市");
+        Persone per3 = new Persone("小黑", "root", "甘肃兰州");
+        Persone per4 = new Persone("小白", "123456", "四川省梁山市");
+        Persone per5 = new Persone("李四", "lisi12", "重庆江北路");
+        Persone pers[] = {per1, per2, per3, per4, per5};
+        getAddress(pers);
     }
 }
