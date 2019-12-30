@@ -57,6 +57,8 @@ public class Day1Afternoon {
         System.out.println(nstr);
     }
 
+
+
     public static void main(String[] args) {
         Day1Afternoon work = new Day1Afternoon();
 
