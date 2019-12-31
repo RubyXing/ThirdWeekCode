@@ -100,36 +100,27 @@ public class Day1StringHwork {
     }
 
     public static void newCallTime(String str4) throws ParseException {
-        switch (Integer.parseInt(str4.substring(str4.indexOf("{") + 1, str4.indexOf("}")))) {
-            case 0:
-                System.out.print("[被叫：");
-                break;
-            case 1:
-                System.out.print("[主叫：");
-                break;
-        }
-        String money;
         String bgt = str4.substring(0, str4.indexOf("{"));
         String ent = str4.substring(str4.indexOf("}") + 1);
         DateFormat df = new SimpleDateFormat("[yyyy][MM][dd][HH][mm][ss]");
-
-        Date d1 = df.parse(bgt);
-        Date d2 = df.parse(ent);
-        long diff = d2.getTime() - d1.getTime();
+        long diff = df.parse(ent).getTime() - df.parse(bgt).getTime();
         long day = diff / (24 * 60 * 60 * 1000);
         long hour = (diff / (60 * 60 * 1000) - day * 24);
         long min = ((diff / (60 * 1000)) - day * 24 * 60 - hour * 60);
         long s = (diff / 1000 - day * 24 * 60 * 60 - hour * 60 * 60 - min * 60);
-        long tmain = 1;
-        if (s != 0) {
-            tmain = diff / (60 * 1000) + 1;
+        String money = 0 + "";
+        if (Integer.parseInt(str4.substring(str4.indexOf("{") + 1, str4.indexOf("}"))) == 0) {
+            System.out.print("[被叫：");
+        } else {
+            System.out.print("[主叫：");
+            long tmain = 0;
+            if (s != 0) {
+                tmain = diff / (60 * 1000) + 1;
+            }
+            money = new DecimalFormat("0.00").format(tmain * 0.3);
         }
-        money = new DecimalFormat("0.00").format(tmain * 0.3);
         System.out.print(day + "天" + hour + "小时" + min + "分" + s + "秒");
-
-        if (Integer.parseInt(str4.substring(str4.indexOf("{") + 1, str4.indexOf("}"))) == 1) {
-            System.out.print(",费用：" + money);
-        }
+        System.out.print(" ,费用：" + money + "元");
         System.out.println("]");
     }
 
