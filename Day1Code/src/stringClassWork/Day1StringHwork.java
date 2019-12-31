@@ -71,7 +71,8 @@ public class Day1StringHwork {
 
     public static void spliteString(String str1) {
         for (String s : str1.split(",")) {
-            callTime(s);
+            newCallTime(s);
+//            callTime(s);
         }
     }
 
@@ -92,22 +93,47 @@ public class Day1StringHwork {
         }
     }
 
+    public static void newCallTime(String str4){
+        switch (Integer.parseInt(str4.substring(str4.indexOf("{" )+ 1,str4.indexOf("}")))) {
+            case 0:
+                System.out.print("[被叫：");
+                break;
+            case 1:
+                System.out.print("[主叫：");
+                break;
+        }
+        String bgt=str4.substring(0,str4.indexOf("{"));
+        String ent=str4.substring(str4.indexOf("}")+1);
+        DateFormat df = new SimpleDateFormat("[yyyy][MM][dd][HH][mm][ss]");
+        try {
+            Date d1 = df.parse(bgt);
+            Date d2 = df.parse(ent);
+            long diff = d2.getTime() - d1.getTime();
+            long day = diff / (24 * 60 * 60 * 1000);
+            long hour = (diff / (60 * 60 * 1000) - day * 24);
+            long min = ((diff / (60 * 1000)) - day * 24 * 60 - hour * 60);
+            long s = (diff / 1000 - day * 24 * 60 * 60 - hour * 60 * 60 - min * 60);
+            System.out.print(day + "天" + hour + "小时" + min + "分" + s + "秒");
+        } catch (Exception e) {
+        }
+        System.out.println("]");
+    }
     public static void main(String[] args) {
 
-//        spliteString("[2016][9][8][10][55][3]{1}[2016][9][8][10][58][57]," +
-//                "[2016][8][7][8][55][20]{0}[2016][9][8][10][58][57]," +
-//                "[2016][9][6][8][55][20]{1}[2016][9][8][10][58][57]," +
-//                "[2015][9][7][8][55][20]{0}[2016][9][8][10][58][57]," +
-//                "[2016][9][7][8][55][20]{1}[2016][9][8][10][58][57]," +
-//                "[2016][9][7][8][55][20]{0}[2016][9][8][10][58][57]," +
-//                "[2016][09][08][10][55][03]{1}[2016][09][08][11][41][57]");
+        spliteString("[2016][9][8][10][55][3]{1}[2016][9][8][10][58][57]," +
+                "[2016][8][7][8][55][20]{0}[2016][9][8][10][58][57]," +
+                "[2016][9][6][8][55][20]{1}[2016][9][8][10][58][57]," +
+                "[2015][9][7][8][55][20]{0}[2016][9][8][10][58][57]," +
+                "[2016][9][7][8][55][20]{1}[2016][9][8][10][58][57]," +
+                "[2016][9][7][8][55][20]{0}[2016][9][8][10][58][57]," +
+                "[2016][09][08][10][55][03]{1}[2016][09][08][11][41][57]");
 
-        Persone per1 = new Persone("张三", "123", "四川省双流区");
-        Persone per2 = new Persone("小吴", "admin", "四川南充市");
-        Persone per3 = new Persone("小黑", "root", "甘肃兰州");
-        Persone per4 = new Persone("小白", "123456", "四川省梁山市");
-        Persone per5 = new Persone("李四", "lisi12", "重庆江北路");
-        Persone pers[] = {per1, per2, per3, per4, per5};
-        getAddress(pers);
+//        Persone per1 = new Persone("张三", "123", "四川省双流区");
+//        Persone per2 = new Persone("小吴", "admin", "四川南充市");
+//        Persone per3 = new Persone("小黑", "root", "甘肃兰州");
+//        Persone per4 = new Persone("小白", "123456", "四川省梁山市");
+//        Persone per5 = new Persone("李四", "lisi12", "重庆江北路");
+//        Persone pers[] = {per1, per2, per3, per4, per5};
+//        getAddress(pers);
     }
 }
