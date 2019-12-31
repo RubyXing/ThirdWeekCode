@@ -4,6 +4,8 @@ package stringClassWork;/*
  */
 
 import java.text.DateFormat;
+import java.text.DecimalFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -57,12 +59,12 @@ public class Day1StringHwork {
         try {
             Date d1 = df.parse(nums[0] + "-" + nums[1] + "-" + nums[2] + " " + nums[3] + ":" + nums[4] + ":" + nums[5]);
             Date d2 = df.parse(nums[6] + "-" + nums[7] + "-" + nums[8] + " " + nums[9] + ":" + nums[10] + ":" + nums[11]);
-            long diff = d2.getTime() - d1.getTime();
-            long day = diff / (24 * 60 * 60 * 1000);
-            long hour = (diff / (60 * 60 * 1000) - day * 24);
-            long min = ((diff / (60 * 1000)) - day * 24 * 60 - hour * 60);
-            long s = (diff / 1000 - day * 24 * 60 * 60 - hour * 60 * 60 - min * 60);
-            System.out.print(day + "天" + hour + "小时" + min + "分" + s + "秒");
+//            long diff = d2.getTime() - d1.getTime();
+//            long day = diff / (24 * 60 * 60 * 1000);
+//            long hour = (diff / (60 * 60 * 1000) - day * 24);
+//            long min = ((diff / (60 * 1000)) - day * 24 * 60 - hour * 60);
+//            long s = (diff / 1000 - day * 24 * 60 * 60 - hour * 60 * 60 - min * 60);
+//            System.out.print(day + "天" + hour + "小时" + min + "分" + s + "秒");
 
         } catch (Exception e) {
         }
@@ -71,8 +73,12 @@ public class Day1StringHwork {
 
     public static void spliteString(String str1) {
         for (String s : str1.split(",")) {
-            newCallTime(s);
+            try {
+                newCallTime(s);
 //            callTime(s);
+            } catch (ParseException e) {
+
+            }
         }
     }
 
@@ -93,8 +99,8 @@ public class Day1StringHwork {
         }
     }
 
-    public static void newCallTime(String str4){
-        switch (Integer.parseInt(str4.substring(str4.indexOf("{" )+ 1,str4.indexOf("}")))) {
+    public static void newCallTime(String str4) throws ParseException {
+        switch (Integer.parseInt(str4.substring(str4.indexOf("{") + 1, str4.indexOf("}")))) {
             case 0:
                 System.out.print("[被叫：");
                 break;
@@ -102,28 +108,37 @@ public class Day1StringHwork {
                 System.out.print("[主叫：");
                 break;
         }
-        String bgt=str4.substring(0,str4.indexOf("{"));
-        String ent=str4.substring(str4.indexOf("}")+1);
+        String money;
+        String bgt = str4.substring(0, str4.indexOf("{"));
+        String ent = str4.substring(str4.indexOf("}") + 1);
         DateFormat df = new SimpleDateFormat("[yyyy][MM][dd][HH][mm][ss]");
-        try {
-            Date d1 = df.parse(bgt);
-            Date d2 = df.parse(ent);
-            long diff = d2.getTime() - d1.getTime();
-            long day = diff / (24 * 60 * 60 * 1000);
-            long hour = (diff / (60 * 60 * 1000) - day * 24);
-            long min = ((diff / (60 * 1000)) - day * 24 * 60 - hour * 60);
-            long s = (diff / 1000 - day * 24 * 60 * 60 - hour * 60 * 60 - min * 60);
-            System.out.print(day + "天" + hour + "小时" + min + "分" + s + "秒");
-        } catch (Exception e) {
+
+        Date d1 = df.parse(bgt);
+        Date d2 = df.parse(ent);
+        long diff = d2.getTime() - d1.getTime();
+        long day = diff / (24 * 60 * 60 * 1000);
+        long hour = (diff / (60 * 60 * 1000) - day * 24);
+        long min = ((diff / (60 * 1000)) - day * 24 * 60 - hour * 60);
+        long s = (diff / 1000 - day * 24 * 60 * 60 - hour * 60 * 60 - min * 60);
+        long tmain = 1;
+        if (s != 0) {
+            tmain = diff / (60 * 1000) + 1;
+        }
+        money = new DecimalFormat("0.00").format(tmain * 0.3);
+        System.out.print(day + "天" + hour + "小时" + min + "分" + s + "秒");
+
+        if (Integer.parseInt(str4.substring(str4.indexOf("{") + 1, str4.indexOf("}"))) == 1) {
+            System.out.print(",费用：" + money);
         }
         System.out.println("]");
     }
+
     public static void main(String[] args) {
 
         spliteString("[2016][9][8][10][55][3]{1}[2016][9][8][10][58][57]," +
                 "[2016][8][7][8][55][20]{0}[2016][9][8][10][58][57]," +
                 "[2016][9][6][8][55][20]{1}[2016][9][8][10][58][57]," +
-                "[2015][9][7][8][55][20]{0}[2016][9][8][10][58][57]," +
+                "[2015][9][7][8][55][20]{1}[2016][9][8][10][58][57]," +
                 "[2016][9][7][8][55][20]{1}[2016][9][8][10][58][57]," +
                 "[2016][9][7][8][55][20]{0}[2016][9][8][10][58][57]," +
                 "[2016][09][08][10][55][03]{1}[2016][09][08][11][41][57]");
