@@ -28,8 +28,8 @@ public class Day3homwork {
         Random ra = new Random();
         StringBuilder sb = new StringBuilder();
         char onechar = '0';
-        while (sb.length() < 4) {
-            switch (ra.nextInt(3)) {
+        while (sb.length() < 6) {
+            switch (ra.nextInt(4)) {
                 case 0:
                     onechar = (char) ('a' + ra.nextInt(26));
                     break;
@@ -48,7 +48,6 @@ public class Day3homwork {
         if (ma.matches()) {
             System.out.println(sb.toString());
         } else {
-            System.out.println(sb.toString());
             checkNum();
         }
     }
