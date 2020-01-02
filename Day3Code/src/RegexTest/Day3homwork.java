@@ -3,6 +3,8 @@ package RegexTest;/*
  *
  */
 
+import java.util.Random;
+import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 //（需求）判断简单邮箱的验证示例：wangyijsyy@126.com
@@ -11,12 +13,44 @@ import java.util.regex.Pattern;
 public class Day3homwork {
 
     public void start() {
-        checkEmail("xingqilin@126.com");
+//        System.out.println(checkEmail("xingqilin@126.com"));
+        checkNum();
     }
 
-    private boolean checkEmail(String eml){
-        Pattern pa=Pattern.compile("");
+    private boolean checkEmail(String eml) {
+        Pattern pa = Pattern.compile("\\w[_\\w\\d]*@[A-Za-z0-9]{3}\\.[A-Za-z]{2,14}");
+        Matcher ma = pa.matcher(eml);
+        return ma.matches();
+    }
 
-        return false;
+    private void checkNum() {
+        Pattern pa = Pattern.compile("([a-z]+|[A-Z]+|\\d+)+");
+        Random ra = new Random();
+        StringBuilder sb = new StringBuilder();
+        char onechar = '0';
+        while (sb.length() < 4) {
+            switch (ra.nextInt(3)) {
+                case 0:
+                    onechar = (char) ('a' + ra.nextInt(26));
+                    break;
+                case 1:
+                    onechar = (char) ('A' + ra.nextInt(26));
+                    break;
+                case 2:
+                    onechar = (char) ('0' + ra.nextInt(10));
+                    break;
+            }
+            if (sb.indexOf(onechar + "") == -1) {
+                sb.append(onechar);
+            }
+        }
+        Matcher ma = pa.matcher(sb);
+        if (ma.matches()) {
+            System.out.println(sb.toString());
+        } else {
+            System.out.println(sb.toString());
+            checkNum();
+        }
     }
 }
+
