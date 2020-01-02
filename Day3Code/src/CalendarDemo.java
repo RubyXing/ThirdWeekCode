@@ -1,5 +1,4 @@
 import java.util.Calendar;
-import java.util.GregorianCalendar;
 
 class CalendarDemo {
     void start() {
@@ -28,14 +27,13 @@ class CalendarDemo {
     private void getMonthday() {
         Calendar ca1 = Calendar.getInstance();
         ca1.set(2028, 1,1);
-//        System.out.println(ca1.get(Calendar.DAY_OF_MONTH));
-//        System.out.println(ca1.getActualMaximum(Calendar.MONTH));
-
-        System.out.println(new GregorianCalendar().isLeapYear(2028) ? 29 : 28);
+        System.out.println(ca1.get(Calendar.DAY_OF_MONTH));
+        System.out.println(ca1.getActualMaximum(Calendar.MONTH));
     }
     private void getDayoflast(){
         Calendar ca1 = Calendar.getInstance();
         ca1.add(Calendar.YEAR,-1);
-        System.out.println("星期"+"零天一二三四五六".charAt(ca1.get(Calendar.DAY_OF_WEEK)));
+        System.out.println("星期" + "零天一二三四五六".charAt(ca1.get(Calendar.DAY_OF_WEEK)));
+
     }
 }
