@@ -13,23 +13,29 @@ import java.util.GregorianCalendar;
 public class StringWork {
 
     private String filter(String str1, ArrayList<String> stword) {
-        StringBuilder sb = new StringBuilder(str1);
-        //定义flag确认未替换次数
-        int flag = 0;
+//        StringBuilder sb = new StringBuilder(str1);
+//        //定义flag确认未替换次数
+//        int flag = 0;
+//        for (String s : stword) {
+//            int index = sb.indexOf(s);
+//            //-1则不进行替换，未替换次数+1
+//            if (index == -1) {
+//                flag++;
+//            } else {
+//                sb.replace(index, index + s.length(), "*");
+//            }
+//            //当敏感词库.size()==本次循环未替换次数，则返回新字符串
+//            if (flag == stword.size()) {
+//                return sb.toString();
+//            }
+//        }
+//        return filter(sb.toString(), stword);
+
+        //解法二 String的replace全部替换
         for (String s : stword) {
-            int index = sb.indexOf(s);
-            //-1则不进行替换，未替换次数+1
-            if (index == -1) {
-                flag++;
-            } else {
-                sb.replace(index, index + s.length(), "*");
-            }
-            //当敏感词库.size()==本次循环未替换次数，则返回新字符串
-            if (flag == stword.size()) {
-                return sb.toString();
-            }
+           str1=str1.replace(s,"*");
         }
-        return filter(sb.toString(), stword);
+        return str1;
     }
 
     private void checkDays(String str2) throws ParseException {
@@ -42,7 +48,7 @@ public class StringWork {
             System.out.println("不是闰年");
         }
         System.out.println(cal.getActualMaximum(Calendar.DAY_OF_MONTH));
-        System.out.println("今天是星期" + "零一二三四五六天八九".charAt(cal.get(Calendar.DAY_OF_WEEK)));
+        System.out.println("今天是星期" + "零天一二三四五六".charAt(cal.get(Calendar.DAY_OF_WEEK)));
     }
 
     private void birthCount(String str3) throws ParseException {
@@ -57,11 +63,14 @@ public class StringWork {
     public static void main(String[] args) {
         StringWork strw = new StringWork();
 //第一题
-//        SensitiveWords stword=new SensitiveWords();
-//        String str1="在网络程序中，如聊天室、聊天软件等，经常需要对一些用户所提交的聊天内容中的敏感性词语进行过滤。" +
-//                "如“性”、“色情”、“爆炸”、“恐怖”、“枪”、“军火”等，这些都不可以在网上进行传播，需要过滤掉或者用其他词语替换掉。";
-//        System.out.println(strw.filter(str1, stword.getStword()));
-
+        SensitiveWords stword=new SensitiveWords();
+        String str1="在网络程序中，如聊天室、聊天软件等，经常需要对一些用户所提交的聊天内容中的敏感性词语进行过滤。" +
+                "如“性”、“色情”、“爆炸”、“恐怖”、“枪”、“军火”等，这些都不可以在网上进行传播，需要过滤掉或者用其他词语替换掉。" +
+                "如“性”、“色情”、“爆炸”、“恐怖”、“枪”、“军火”等，这些都不可以在网上进行传播，需要过滤掉或者用其他词语替换掉。";
+        Long starter=System.currentTimeMillis();
+        System.out.println(strw.filter(str1, stword.getStword()));
+        Long ender=System.currentTimeMillis();
+        System.out.println(ender-starter);
 // 第二题
 //        Scanner sc = new Scanner(System.in);
 //        System.out.println("请输入日期：格式yyyy-MM-dd");
@@ -73,11 +82,11 @@ public class StringWork {
 //        }
 
 // 第三题
-        try {
-            strw.birthCount("1996-11-22");
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
+//        try {
+//            strw.birthCount("1996-11-22");
+//        } catch (ParseException e) {
+//            e.printStackTrace();
+//        }
 
     }
 }
