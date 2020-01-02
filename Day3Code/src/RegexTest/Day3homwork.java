@@ -24,7 +24,10 @@ public class Day3homwork {
     }
 
     private void checkNum() {
-        Pattern pa = Pattern.compile("([a-z]+|[A-Z]+|\\d+)+");
+        Pattern pcapital = Pattern.compile("[a-z]+");
+        Pattern psmall = Pattern.compile("[A-Z]+");
+        Pattern pnum = Pattern.compile("\\d+");
+
         Random ra = new Random();
         StringBuilder sb = new StringBuilder();
         char onechar = '0';
@@ -44,8 +47,10 @@ public class Day3homwork {
                 sb.append(onechar);
             }
         }
-        Matcher ma = pa.matcher(sb);
-        if (ma.matches()) {
+        Matcher ma1 = pcapital.matcher(sb);
+        Matcher ma2 = psmall.matcher(sb);
+        Matcher ma3 = pnum.matcher(sb);
+        if (ma1.find()&&ma2.find()&&ma3.find()) {
             System.out.println(sb.toString());
         } else {
             checkNum();
