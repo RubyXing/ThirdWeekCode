@@ -27,7 +27,6 @@ public class Day3homwork {
         Pattern pcapital = Pattern.compile("[a-z]+");
         Pattern psmall = Pattern.compile("[A-Z]+");
         Pattern pnum = Pattern.compile("\\d+");
-
         Random ra = new Random();
         StringBuilder sb = new StringBuilder();
         char onechar = '0';
