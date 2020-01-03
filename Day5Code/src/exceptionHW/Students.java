@@ -3,7 +3,7 @@ package exceptionHW;/*
  *
  */
 
-public class Students implements Cloneable{
+public class Students implements Cloneable {
     private String sname;
     private String sage;
     private String sgrade;
@@ -61,10 +61,9 @@ public class Students implements Cloneable{
             return true;
         }
         if (obj instanceof Students) {
-            Students stu=(Students)obj;
-            if (this.sgrade.equals(stu.sgrade)){
-                return true;
-            }
+            Students stu = (Students) obj;
+            return this.sgrade.equals(stu.sgrade);
+
         }
         return false;
     }
