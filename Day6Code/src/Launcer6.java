@@ -15,14 +15,9 @@ public class Launcer6 {
 //            e.printStackTrace();
 //        }
 
-//        File fl=new File("testfile.txt");
-//        File fl2=new File("d:\\targetfile");
-//        System.out.println(fl2.canRead());
-//        System.out.println(fl2.canExecute());
-//        System.out.println(fl2.getAbsoluteFile());
-//        System.out.println(fl2.getAbsolutePath());
-//        System.out.println(fl2.getPath());
-//        System.out.println(fl2.exists());
+        FileStudy fls = new FileStudy();
+        fls.start();
+
 
     }
 }
