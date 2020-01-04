@@ -12,11 +12,12 @@ public class ExceptionFinder {
         try {
             System.out.println(new SimpleDateFormat("YYYY").format("2019"));
         }catch (IllegalArgumentException e){
+
             System.out.println(e);
         }
 
         try {
-            System.out.println(new SimpleDateFormat("YYYY").parse("avc"));
+            System.out.println(new SimpleDateFormat("yyyy").parse("avc"));
         } catch (ParseException e) {
             System.out.println(e);
         }
@@ -27,7 +28,6 @@ public class ExceptionFinder {
         }catch (NullPointerException e){
             System.out.println(e);
         }
-
 
 
     }
