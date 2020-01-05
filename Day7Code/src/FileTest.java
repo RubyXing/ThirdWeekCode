@@ -5,7 +5,8 @@ public class FileTest {
 
     public void start() {
 //        showFiletest();
-        calssTest();
+//        calssTest();
+        writeTest();
     }
 
 
@@ -62,5 +63,27 @@ public class FileTest {
                 e.printStackTrace();
             }
         }
+    }
+//安静的离去,和孤单一起,拥挤的回忆,随时间抹去
+    private void writeTest(){
+        File fl1 = new File("D:\\CCC\\aaa.txt");
+        OutputStream ins=null;
+        String str="安静的离去,\n和孤单一起,\n拥挤的回忆,\n随时间抹去\n";
+        try {
+            ins=new FileOutputStream(fl1,true);
+            byte by[]=str.getBytes();
+            ins.write(by);
+        } catch (IOException  e) {
+            e.printStackTrace();
+        }finally {
+            if (ins!=null) {
+                try {
+                    ins.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+
     }
 }
