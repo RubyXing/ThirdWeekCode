@@ -88,11 +88,11 @@ public class DataSave {
             }
         }
         for (Cars car1 : cars) {
-            System.out.println("车牌：" + car1.getcID() + ",颜色：" + car1.getcColor() + "," + new SimpleDateFormat("停入日期:yyyy年MM月dd日 HH:mm:ss").format(car1.getcTime()));
+            System.out.println(car1.showcar());
         }
 
     }
     public String showCar(){
-        return "车牌："+car.getcID()+",颜色："+car.getcColor()+","+new SimpleDateFormat("停入日期:yyyy年MM月dd日 HH:mm:ss").format(car.getcTime());
+        return car.showcar();
     }
 }

@@ -53,4 +53,8 @@ public class Cars {
     public String toString() {
         return cID + "," + cColor + ","+ new SimpleDateFormat("停入日期:yyyy年MM月dd日 HH:mm:ss").format(cTime);
     }
+
+    public String showcar() {
+        return "车牌：" + cID + ",颜色：" + cColor + "," + new SimpleDateFormat("停入日期:yyyy年MM月dd日 HH:mm:ss").format(cTime);
+    }
 }
