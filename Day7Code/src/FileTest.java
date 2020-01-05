@@ -6,7 +6,8 @@ public class FileTest {
     public void start() {
 //        showFiletest();
 //        calssTest();
-        writeTest();
+//        writeTest();
+        copyPicture();
     }
 
 
@@ -44,14 +45,18 @@ public class FileTest {
 
     private void calssTest() {
         File fl1 = new File("D:\\CCC\\aaa.txt");
+        File fl2 = new File("D:\\CCC\\bbb.txt");
         byte btemp[] = new byte[1024];
         InputStream fin = null;
+        OutputStream fout=null;
         try {
             fin = new FileInputStream(fl1);
+            fout=new FileOutputStream(fl2);
             int len = 0;
             while ((len=fin.read(btemp)) != -1) {
                 String show = new String(btemp, 0, len);
-                System.out.println(show);
+                System.out.println(show+"写入成功");
+                fout.write(btemp);
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -62,13 +67,20 @@ public class FileTest {
             } catch (IOException e) {
                 e.printStackTrace();
             }
+            if (fout!=null) {
+                try {
+                    fout.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
         }
     }
 //安静的离去,和孤单一起,拥挤的回忆,随时间抹去
     private void writeTest(){
         File fl1 = new File("D:\\CCC\\aaa.txt");
         OutputStream ins=null;
-        String str="安静的离去,\n和孤单一起,\n拥挤的回忆,\n随时间抹去\n";
+        String str="安静的离去,\n和孤单一起,\n拥挤的回忆,\r\n随时间抹去\r\n";
         try {
             ins=new FileOutputStream(fl1,true);
             byte by[]=str.getBytes();
@@ -82,6 +94,42 @@ public class FileTest {
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
+            }
+        }
+
+    }
+
+    private void copyPicture(){
+        File fl1=new File("D:\\ccc\\bbb\\aaa\\stringbuffer删除.png");
+        File fl2=new File("D:\\ccc\\becopy.png");
+        byte btemp[] = new byte[1024];
+        InputStream fin = null;
+        OutputStream fout=null;
+        try {
+            fin=new FileInputStream(fl1);
+            int len=0;
+            if (fl2.createNewFile()) {
+                fout=new FileOutputStream(fl2);
+                while ((len=fin.read(btemp))!=-1){
+                    fout.write(btemp,0,len);
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }finally {
+            try {
+                if (fout != null) {
+                    fout.close();
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            try {
+                if (fin != null) {
+                    fin.close();
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
             }
         }
 
