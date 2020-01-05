@@ -16,6 +16,7 @@ public class Launcer6 {
 //        }
 
         FileStudy fls = new FileStudy();
+        FileStudy fl2 =fls;
         fls.start();
 
 

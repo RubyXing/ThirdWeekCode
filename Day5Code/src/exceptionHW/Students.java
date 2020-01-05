@@ -55,14 +55,13 @@ public class Students implements Cloneable {
                 '}';
     }
 
-    @Override
     public boolean equals(Object obj) {
         if (this == obj) {
             return true;
         }
         if (obj instanceof Students) {
             Students stu = (Students) obj;
-            return this.sgrade.equals(stu.sgrade);
+            return this.sname.equals(stu.sname);
 
         }
         return false;

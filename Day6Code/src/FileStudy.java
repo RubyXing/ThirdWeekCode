@@ -10,16 +10,21 @@ import java.util.Scanner;
 //将D盘下aaa文件夹删除,要求文件夹aaa是一个空文件夹。
 public class FileStudy {
     public void start() {
-//    homework1();
+//        homework1();
 
+
+//        System.out.println("请输入地址：");
+//        Scanner sc = new Scanner(System.in);
+//        File fl1 = new File(sc.nextLine());
+//        File fl2[] = fl1.listFiles();
+//        homeword2(fl2);
 
         System.out.println("请输入地址：");
         Scanner sc = new Scanner(System.in);
         File fl1 = new File(sc.nextLine());
         File fl2[] = fl1.listFiles();
-        homeword2(fl2);
-
-
+        deletfile(fl2);
+        System.out.println(fl1.getName() + "，被删除情况：" + fl1.delete());
     }
 
     private void homework1() {
@@ -49,25 +54,36 @@ public class FileStudy {
         System.out.println(fl4.getTotalSpace());
         System.out.println(fl4.getFreeSpace());
 
-        System.out.println(fl4.delete());
-        System.out.println(fl3.delete());
+//        System.out.println(fl4.delete());
+//        System.out.println(fl3.delete());
 
     }
 
     private void homeword2(File... dir) {
         for (File fi : dir) {
-            if (fi.isDirectory()) {
+            if (fi.isDirectory() && fi.canRead()) {
                 File flt[] = fi.listFiles();
-                if (flt != null) {
-                    homeword2(flt);
-                }
+//                if (flt != null) {
+                homeword2(flt);
+//                }
             } else {
                 if (fi.getName().endsWith(".png") || fi.getName().endsWith(".jpg")) {
                     System.out.println("找到图片" + fi.getAbsoluteFile());
                 }
             }
         }
+    }
 
+    private void deletfile(File... dir) {
+        for (File fi : dir) {
+            if (fi.isDirectory() && fi.canRead()) {
+                File flt[] = fi.listFiles();
+//                if (flt != null) {
+                deletfile(flt);
+//                }
+            }
+            System.out.println(fi.getName() + "，被删除情况：" + fi.delete());
+        }
     }
 
 }
