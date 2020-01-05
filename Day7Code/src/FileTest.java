@@ -7,8 +7,13 @@ public class FileTest {
 //        showFiletest();
 //        calssTest();
 //        writeTest();
-        copyPicture();
+//        copyPicture();
+//        writeTest();
+        rwdertest();
     }
+
+
+
 
 
     private void showFiletest() {
@@ -48,14 +53,14 @@ public class FileTest {
         File fl2 = new File("D:\\CCC\\bbb.txt");
         byte btemp[] = new byte[1024];
         InputStream fin = null;
-        OutputStream fout=null;
+        OutputStream fout = null;
         try {
             fin = new FileInputStream(fl1);
-            fout=new FileOutputStream(fl2);
+            fout = new FileOutputStream(fl2);
             int len = 0;
-            while ((len=fin.read(btemp)) != -1) {
+            while ((len = fin.read(btemp)) != -1) {
                 String show = new String(btemp, 0, len);
-                System.out.println(show+"写入成功");
+                System.out.println(show + "写入成功");
                 fout.write(btemp);
             }
         } catch (IOException e) {
@@ -67,7 +72,7 @@ public class FileTest {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-            if (fout!=null) {
+            if (fout != null) {
                 try {
                     fout.close();
                 } catch (IOException e) {
@@ -76,19 +81,20 @@ public class FileTest {
             }
         }
     }
-//安静的离去,和孤单一起,拥挤的回忆,随时间抹去
-    private void writeTest(){
+
+    //安静的离去,和孤单一起,拥挤的回忆,随时间抹去
+    private void writeTest() {
         File fl1 = new File("D:\\CCC\\aaa.txt");
-        OutputStream ins=null;
-        String str="安静的离去,\n和孤单一起,\n拥挤的回忆,\r\n随时间抹去\r\n";
+        OutputStream ins = null;
+        String str = "安静的离去,\n和孤单一起,\n拥挤的回忆,\r\n随时间抹去\r\n";
         try {
-            ins=new FileOutputStream(fl1,true);
-            byte by[]=str.getBytes();
+            ins = new FileOutputStream(fl1, true);
+            byte by[] = str.getBytes();
             ins.write(by);
-        } catch (IOException  e) {
+        } catch (IOException e) {
             e.printStackTrace();
-        }finally {
-            if (ins!=null) {
+        } finally {
+            if (ins != null) {
                 try {
                     ins.close();
                 } catch (IOException e) {
@@ -99,24 +105,22 @@ public class FileTest {
 
     }
 
-    private void copyPicture(){
-        File fl1=new File("D:\\ccc\\bbb\\aaa\\stringbuffer删除.png");
-        File fl2=new File("D:\\ccc\\becopy.png");
+    private void copyPicture() {
+        File fl1 = new File("D:\\ccc\\bbb\\aaa\\stringbuffer删除.png");
+        File fl2 = new File("D:\\ccc\\becopy.png");
         byte btemp[] = new byte[1024];
         InputStream fin = null;
-        OutputStream fout=null;
+        OutputStream fout = null;
         try {
-            fin=new FileInputStream(fl1);
-            int len=0;
-            if (fl2.createNewFile()) {
-                fout=new FileOutputStream(fl2);
-                while ((len=fin.read(btemp))!=-1){
-                    fout.write(btemp,0,len);
-                }
+            fin = new FileInputStream(fl1);
+            int len = 0;
+            fout = new FileOutputStream(fl2);
+            while ((len = fin.read(btemp)) != -1) {
+                fout.write(btemp, 0, len);
             }
         } catch (IOException e) {
             e.printStackTrace();
-        }finally {
+        } finally {
             try {
                 if (fout != null) {
                     fout.close();
@@ -133,5 +137,27 @@ public class FileTest {
             }
         }
 
+    }
+
+    private void rwdertest(){
+        File fl1 = new File("D:\\CCC\\aaa.txt");
+        Reader re1=null;
+        Writer wr1=null;
+        try {
+            wr1=new FileWriter(fl1,true);
+            re1=new FileReader(fl1);
+//            String str = "aaaaaa";
+//            wr1.write(str);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }finally {
+            try {
+                if (wr1 != null) {
+                    wr1.close();
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
     }
 }
